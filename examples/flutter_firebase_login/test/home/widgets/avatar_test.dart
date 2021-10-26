@@ -31,8 +31,8 @@ void main() {
       await tester.pumpWidget(MaterialApp(home: Avatar()));
       final avatar = tester.widget<CircleAvatar>(find.byType(CircleAvatar));
       expect(avatar.backgroundImage, isNull);
-      final icon = avatar.child as Icon;
-      expect(icon.icon, Icons.person_outline);
+      final icon = avatar.child as Icon?;
+      expect(icon!.icon, Icons.person_outline);
       expect(icon.size, 48);
     });
   });

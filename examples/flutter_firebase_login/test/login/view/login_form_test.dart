@@ -2,10 +2,10 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:flutter_firebase_login/login/login.dart';
 import 'package:flutter_firebase_login/sign_up/sign_up.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -40,9 +40,8 @@ void main() {
     setUp(() {
       loginCubit = MockLoginCubit();
       when(() => loginCubit.state).thenReturn(const LoginState());
-      when(() => loginCubit.logInWithGoogle()).thenAnswer((_) async => null);
-      when(() => loginCubit.logInWithCredentials())
-          .thenAnswer((_) async => null);
+      when(() => loginCubit.logInWithGoogle()).thenAnswer((_) async {});
+      when(() => loginCubit.logInWithCredentials()).thenAnswer((_) async {});
     });
 
     group('calls', () {

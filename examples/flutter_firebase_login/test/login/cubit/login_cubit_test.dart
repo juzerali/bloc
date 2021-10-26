@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:flutter_firebase_login/login/login.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -30,13 +30,13 @@ void main() {
       authenticationRepository = MockAuthenticationRepository();
       when(
         () => authenticationRepository.logInWithGoogle(),
-      ).thenAnswer((_) async => null);
+      ).thenAnswer((_) async {});
       when(
         () => authenticationRepository.logInWithEmailAndPassword(
           email: any(named: 'email'),
           password: any(named: 'password'),
         ),
-      ).thenAnswer((_) async => null);
+      ).thenAnswer((_) async {});
     });
 
     test('initial state is LoginState', () {
@@ -232,7 +232,7 @@ void main() {
         act: (cubit) => cubit.logInWithGoogle(),
         expect: () => const <LoginState>[
           LoginState(status: FormzStatus.submissionInProgress),
-          LoginState(status: FormzStatus.pure)
+          LoginState()
         ],
       );
     });

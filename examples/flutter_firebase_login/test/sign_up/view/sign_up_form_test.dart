@@ -2,9 +2,9 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:flutter_firebase_login/sign_up/sign_up.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -42,8 +42,7 @@ void main() {
     setUp(() {
       signUpCubit = MockSignUpCubit();
       when(() => signUpCubit.state).thenReturn(const SignUpState());
-      when(() => signUpCubit.signUpFormSubmitted())
-          .thenAnswer((_) async => null);
+      when(() => signUpCubit.signUpFormSubmitted()).thenAnswer((_) async {});
     });
 
     group('calls', () {
@@ -90,10 +89,12 @@ void main() {
           ),
         );
         await tester.enterText(
-            find.byKey(confirmedPasswordInputKey), testConfirmedPassword);
-        verify(() =>
-                signUpCubit.confirmedPasswordChanged(testConfirmedPassword))
-            .called(1);
+          find.byKey(confirmedPasswordInputKey),
+          testConfirmedPassword,
+        );
+        verify(
+          () => signUpCubit.confirmedPasswordChanged(testConfirmedPassword),
+        ).called(1);
       });
 
       testWidgets('signUpFormSubmitted when sign up button is pressed',
